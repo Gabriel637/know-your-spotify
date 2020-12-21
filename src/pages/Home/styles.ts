@@ -5,16 +5,16 @@ export const Container = styled.div`
   width:100%;
   height:100%;
   position: absolute;
-  padding: 0 !important;
   display: flex;
   flex-direction: column;
-  background-color: var(--secondary);
+  background-color: var(--tertiary);
+  margin: 20px;
 `
 
 export const Header = styled.div`
   width: 100%;
   height: ${px2vw(150, 1440)};
-  background-color: var(--secondary);
+  background-color: var(--tertiary);
   display: flex;
   flex-direction: column;
   align-items: center;

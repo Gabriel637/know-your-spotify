@@ -2,11 +2,22 @@
 import React from 'react'
 import GlobalStyles from './styles/GlobalStyles'
 import Home from './pages/Home'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
 
 function App() {
   return (
     <>
-      <Home />
+      <Router>
+        <Switch>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router >
       <GlobalStyles />
     </>
   )
