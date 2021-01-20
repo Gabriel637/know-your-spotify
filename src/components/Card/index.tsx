@@ -1,22 +1,60 @@
 // eslint-disable-next-line no-use-before-define
-import React, { useState } from 'react'
-import { Container, Position, ArtistPic, NameArtist } from './styles'
+import React from 'react'
+import { Container, Position, Crown, ArtistPic, NameArtist, Genres } from './styles'
+import CrownFirst from '../../assets/crown-first.svg'
+import CrownSecond from '../../assets/crown-second.svg'
+import CrownThird from '../../assets/crown-third.svg'
+import Medal from '../../assets/medal.svg'
+import Badge from '../../assets/badge.svg'
 
-const Card: React.FC = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [mouseEnter, setMouseEnter] = useState(false)
+interface Props {
+  name: string,
+  image: string,
+  content: any,
+  position: number
+};
+
+// eslint-disable-next-line react/prop-types
+const Card: React.FC<Props> = ({ name, image, content, position }) => {
+  console.log({ name, image, content, position })
   return (
-    <Container /*  onMouseEnter={() => {
-      setMouseEnter(true)
-    }} */
-    >
+    <Container>
       <Position>
-        <h3>1</h3>
+        <h3>{position}</h3>
       </Position>
-      <ArtistPic />
+      {
+        position === 1 &&
+        <Crown src={CrownFirst} />
+      }
+      {
+        position === 2 &&
+        <Crown src={CrownSecond} />
+      }
+      {
+        position === 3 &&
+        <Crown src={CrownThird} />
+      }
+      {
+        position === 4 &&
+        <Crown src={Medal} />
+      }
+      {
+        position === 5 &&
+        <Crown src={Badge} />
+      }
+      <ArtistPic src={image} />
       <NameArtist>
-        <h3>Frank Ocean</h3>
+        <h3>{name}</h3>
       </NameArtist>
+      <Genres>
+        {
+          content &&
+          // eslint-disable-next-line react/prop-types
+          content.slice(0, 2).map((item: Props) => {
+            return <p key={content[0]}> {item}</p>
+          })
+        }
+      </Genres>
     </Container>
   )
 }

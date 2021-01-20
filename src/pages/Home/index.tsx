@@ -64,7 +64,6 @@ const Home: React.FC = () => {
           const track = { id: item.id, name: item.name, artists: [item.artists[0].name], album: item.album.name, position: items.indexOf(item) + 1, image: item.album.images[0].url }
           tracks.push(track)
         })
-        console.log(tracks)
         setSongs(tracks)
       })
       .catch((error: any) => {
