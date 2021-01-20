@@ -5,6 +5,10 @@ export default createGlobalStyle`
         margin: 0
     }
 
+    body {
+        background-color: #2f3136;
+    }
+
     *, button, input{
         font-family: 'Roboto', sans-serif;
         color: #fff;
