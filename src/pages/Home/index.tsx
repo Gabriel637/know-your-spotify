@@ -5,7 +5,7 @@ import {
   useLocation
 } from 'react-router-dom'
 import Lottie from 'react-lottie'
-import { Container, Header, ImageLogo, TextBox, ButtonBox, Button, CardContainer, ContainerStandBy, FirstAnimation, SecondAnimation, ThirdAnimation, FourthAnimation } from './styles'
+import { Container, Header, ImageLogo, TextBox, ButtonBox, Button, CardContainer, ContainerStandBy } from './styles'
 import Card from '../../components/Card'
 import api from '../../utils/api'
 import queryString from 'query-string'
@@ -104,7 +104,7 @@ const Home: React.FC = () => {
         standby
           ? <>
             <ContainerStandBy>
-              <FirstAnimation style={{ order: Math.floor(Math.random() * 4) + 1 }}>
+              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 300) + 1 }}>
                 <Lottie options={{
                   loop: true,
                   autoplay: true,
@@ -116,8 +116,8 @@ const Home: React.FC = () => {
                   height={300}
                   width={300}
                 />
-              </FirstAnimation>
-              <SecondAnimation style={{ order: Math.floor(Math.random() * 4) + 1 }}>
+              </div>
+              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 300) + 1 }}>
                 <Lottie options={{
                   loop: true,
                   autoplay: true,
@@ -129,8 +129,8 @@ const Home: React.FC = () => {
                   height={300}
                   width={300}
                 />
-              </SecondAnimation>
-              <ThirdAnimation style={{ order: Math.floor(Math.random() * 4) + 1 }}>
+              </div>
+              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 300) + 1 }}>
                 <Lottie options={{
                   loop: true,
                   autoplay: true,
@@ -142,8 +142,8 @@ const Home: React.FC = () => {
                   height={300}
                   width={300}
                 />
-              </ThirdAnimation>
-              <FourthAnimation style={{ order: Math.floor(Math.random() * 4) + 1 }}>
+              </div>
+              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 300) + 1 }}>
                 <Lottie options={{
                   loop: true,
                   autoplay: true,
@@ -155,7 +155,7 @@ const Home: React.FC = () => {
                   height={300}
                   width={300}
                 />
-              </FourthAnimation>
+              </div>
             </ContainerStandBy>
           </>
           : <>
