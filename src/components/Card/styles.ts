@@ -34,7 +34,6 @@ export const NameArtist = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
   margin-top: 10px;
   h3{
     font-size: 26px;

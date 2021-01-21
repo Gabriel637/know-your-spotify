@@ -10,20 +10,43 @@ export const Container = styled.div`
 export const Header = styled.div`
   background-color: var(--secondary);
   display: flex;
-  flex-direction: column;
   align-items: center;
+`
+export const ImageLogo = styled.img`
+  align-self: center;
+  height: 50px;
 `
 
 export const TextBox = styled.div`
   text-align: center;
-  border-bottom: 0.2px solid var(--tertiary);
+  display: flex;
   > h1{
     color: var(--primary);
     font-size: 38px;
   }
 `
+
 export const ButtonBox = styled.div`
   display: flex;
+`
+
+export const ContainerStandBy = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+export const FirstAnimation = styled.div`
+  margin-top: 100px;
+`
+
+export const SecondAnimation = styled.div`
+  margin-top: 300px;
+`
+export const ThirdAnimation = styled.div`
+  margin-top: 20px;
+`
+
+export const FourthAnimation = styled.div`
+  margin-top: 250px;
 `
 
 export const Button = styled.button`
@@ -33,7 +56,7 @@ export const Button = styled.button`
     padding: 10px;
     border-radius: 20px;
     border: 0;
-    margin: 20px 30px;
+    margin: 20px;
     :hover{
       cursor: pointer;
       background-color: var(--quaternary);
