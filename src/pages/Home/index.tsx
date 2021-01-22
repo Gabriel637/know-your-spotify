@@ -10,6 +10,7 @@ import Card from '../../components/Card'
 import api from '../../utils/api'
 import queryString from 'query-string'
 import Logo from '../../assets/spotify.png'
+import DefaultDisc from '../../assets/default-disc.png'
 import MexicanMusic from '../../assets/mexican-music.json'
 import Monster from '../../assets/monster.json'
 import MusicDisc from '../../assets/music-disc.json'
@@ -28,13 +29,20 @@ const Home: React.FC = () => {
     name: string,
     image: string,
     artists: any,
-    album: string,
+    position: number
+  }
+  interface IPlaylist {
+    id: string,
+    name: string,
+    image: string,
+    owner: string,
     position: number
   }
 
   const { hash } = useLocation()
   const [artists, setArtists] = useState<Array<IArtist>>([])
   const [songs, setSongs] = useState<Array<ISong>>([])
+  const [playlists, setPlaylists] = useState<Array<IPlaylist>>([])
   const [standby, setStandby] = useState(true)
   // eslint-disable-next-line camelcase
   const { access_token } = queryString.parse(hash)
@@ -56,11 +64,14 @@ const Home: React.FC = () => {
           artists.push(artist)
         })
         setArtists(artists)
-        setSongs([])
         setStandby(false)
+        setSongs([])
+        setPlaylists([])
       })
       .catch((error: any) => {
-        console.log(error)
+        if (error) {
+          window.location.replace('http://localhost:8888/login')
+        }
       })
   }
 
@@ -77,34 +88,68 @@ const Home: React.FC = () => {
         const tracks: any = []
         const { items } = response.data
         items.forEach((item: any) => {
-          const track = { id: item.id, name: item.name, artists: [item.artists[0].name], album: item.album.name, position: items.indexOf(item) + 1, image: item.album.images[0].url }
+          const track = { id: item.id, name: item.name, artists: [item.artists[0].name], position: items.indexOf(item) + 1, image: item.album.images[0].url }
           tracks.push(track)
         })
         setSongs(tracks)
         setStandby(false)
         setArtists([])
+        setPlaylists([])
       })
       .catch((error: any) => {
-        console.log(error)
+        if (error) {
+          window.location.replace('http://localhost:8888/login')
+        }
       })
   }
+
+  const getPlaylists = () => {
+    const headers = {
+      // eslint-disable-next-line camelcase
+      Authorization: `Bearer ${access_token}`
+    }
+    const params = {
+      limit: 50
+    }
+    api.get('/me/playlists', { headers, params })
+      .then((response: any) => {
+        const playlists: any = []
+        const { items } = response.data
+        items.forEach((item: any) => {
+          const playlist = { id: item.id, name: item.name, owner: [item.owner.display_name], image: item.images[0] ? item.images[0].url : DefaultDisc, position: items.indexOf(item) + 1 }
+          console.log(playlist)
+          playlists.push(playlist)
+        })
+        setPlaylists(playlists)
+        setStandby(false)
+        setArtists([])
+        setSongs([])
+      })
+      .catch((error: any) => {
+        if (error) {
+          window.location.replace('http://localhost:8888/login')
+        }
+      })
+  }
+
+  const messages = ['Please, Justin Bieber no', 'I\'m praying that you do not listen to Lana del Rey', 'Awesome taste! I\'m kidding', 'Are you still living in the past? Refresh dude', 'Another Taylor Swift fan, meh', 'Call me, let\'s listen some sad songs together']
 
   return (
     <Container>
       <Header>
-        <TextBox>
-          <ImageLogo src={Logo} />
-        </TextBox>
+        <ImageLogo src={Logo} />
         <ButtonBox>
-          <Button onClick={() => getTopArtists()} > Artists </Button>
-          <Button onClick={() => getTopSongs()}> Songs </Button>
+          <Button onClick={() => getTopArtists()} > My top artists </Button>
+          <Button onClick={() => getTopSongs()}> My top songs </Button>
+          <Button onClick={() => getPlaylists()}> My playlists </Button>
         </ButtonBox>
       </Header>
+      <TextBox> <h1> {hash ? messages[(Math.floor(Math.random() * 5) + 1)] : 'Click in any button above to login'}</h1></TextBox>
       {
         standby
           ? <>
             <ContainerStandBy>
-              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 300) + 1 }}>
+              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 200) + 1 }}>
                 <Lottie options={{
                   loop: true,
                   autoplay: true,
@@ -117,7 +162,7 @@ const Home: React.FC = () => {
                   width={300}
                 />
               </div>
-              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 300) + 1 }}>
+              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 200) + 1 }}>
                 <Lottie options={{
                   loop: true,
                   autoplay: true,
@@ -130,7 +175,7 @@ const Home: React.FC = () => {
                   width={300}
                 />
               </div>
-              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 300) + 1 }}>
+              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 200) + 1 }}>
                 <Lottie options={{
                   loop: true,
                   autoplay: true,
@@ -143,7 +188,7 @@ const Home: React.FC = () => {
                   width={300}
                 />
               </div>
-              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 300) + 1 }}>
+              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 200) + 1 }}>
                 <Lottie options={{
                   loop: true,
                   autoplay: true,
@@ -152,24 +197,30 @@ const Home: React.FC = () => {
                     preserveAspectRatio: 'xMidYMid slice'
                   }
                 }}
-                  height={300}
-                  width={300}
+                  height={200}
+                  width={200}
                 />
               </div>
             </ContainerStandBy>
           </>
           : <>
-            <CardContainer style={{ opacity: artists[0] || songs[0] ? '1' : 0 }}>
+            <CardContainer style={{ opacity: !standby ? 1 : 0 }}>
               {
                 artists &&
                 artists.map((artist: IArtist) => {
-                  return <Card key={artist.id} name={artist.name} image={artist.image} content={artist.genres} position={artists.indexOf(artist) + 1} />
+                  return <Card key={artist.id} name={artist.name} image={artist.image} content={artist.genres} position={artist.position} />
                 })
               }
               {
                 songs &&
                 songs.map((song: ISong) => {
                   return <Card key={song.id} name={song.name} image={song.image} content={song.artists} position={song.position} />
+                })
+              }
+              {
+                playlists &&
+                playlists.map((playlist: IPlaylist) => {
+                  return <Card key={playlist.id} name={playlist.name} image={playlist.image} content={playlist.owner} position={playlist.position} />
                 })
               }
             </CardContainer> </>

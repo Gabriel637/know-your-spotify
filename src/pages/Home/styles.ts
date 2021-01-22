@@ -11,7 +11,11 @@ export const Header = styled.div`
   background-color: var(--secondary);
   display: flex;
   align-items: center;
+  @media(max-width: 1025px){
+    flex-direction: column;
+  }
 `
+
 export const ImageLogo = styled.img`
   align-self: center;
   height: 50px;
@@ -20,6 +24,8 @@ export const ImageLogo = styled.img`
 export const TextBox = styled.div`
   text-align: center;
   display: flex;
+  justify-content: center;
+  margin: 20px;
   > h1{
     color: var(--primary);
     font-size: 38px;
@@ -28,25 +34,21 @@ export const TextBox = styled.div`
 
 export const ButtonBox = styled.div`
   display: flex;
+  @media(max-width: 1025px){
+    flex-direction: column;
+  }
 `
 
 export const ContainerStandBy = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
-export const FirstAnimation = styled.div`
-  margin-top: 100px;
-`
-
-export const SecondAnimation = styled.div`
-  margin-top: 300px;
-`
-export const ThirdAnimation = styled.div`
-  margin-top: 20px;
-`
-
-export const FourthAnimation = styled.div`
-  margin-top: 250px;
+    display: flex;
+    flex-direction: column;
+    div {
+      margin-top: 0 !important;
+    }  
+  @media(min-width: 1025px){
+    display: flex;
+    justify-content: space-between;
+  }
 `
 
 export const Button = styled.button`
@@ -65,9 +67,20 @@ export const Button = styled.button`
 `
 export const CardContainer = styled.div`
   display: grid;
-  margin: 5px;
+  justify-items: center;
   grid-template-columns: repeat(auto-fit, 20%);
   transition-delay: 1s;
   transition: opacity 2s;
   opacity: 0;
+  @media(max-width: 540px){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    >div{
+      width: 80%;
+    }
+  }
+  @media(max-width: 1025px){
+    grid-template-columns: repeat(auto-fit, 33%);
+  }
 `
