@@ -132,7 +132,7 @@ const Home: React.FC = () => {
       })
   }
 
-  const messages = ['Please, Justin Bieber no', 'I\'m praying that you do not listen to Lana del Rey', 'Awesome taste! I\'m kidding', 'Are you still living in the past? Refresh dude', 'Another Taylor Swift fan, meh', 'Call me, let\'s listen some sad songs together']
+  const messages = ['Please, Justin Bieber no', 'I\'m praying that you do not listen to Lana del Rey', 'Awesome taste! I\'m kidding', 'Are you still living in the past? Refresh dude', 'Another Taylor Swift fan, meh', 'Call me, I\'show what is good music']
 
   return (
     <Container>
@@ -144,12 +144,12 @@ const Home: React.FC = () => {
           <Button onClick={() => getPlaylists()}> My playlists </Button>
         </ButtonBox>
       </Header>
-      <TextBox> <h1> {hash ? messages[(Math.floor(Math.random() * 5) + 1)] : 'Click in any button above to login'}</h1></TextBox>
+      <TextBox> <h1> {hash ? messages[(Math.floor(Math.random() * messages.length) + 1)] : 'Click in any button above to login'}</h1></TextBox>
       {
         standby
           ? <>
             <ContainerStandBy>
-              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 200) + 1 }}>
+              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 250) + 1 }}>
                 <Lottie options={{
                   loop: true,
                   autoplay: true,
@@ -162,7 +162,7 @@ const Home: React.FC = () => {
                   width={300}
                 />
               </div>
-              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 200) + 1 }}>
+              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 250) + 1 }}>
                 <Lottie options={{
                   loop: true,
                   autoplay: true,
@@ -175,7 +175,7 @@ const Home: React.FC = () => {
                   width={300}
                 />
               </div>
-              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 200) + 1 }}>
+              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 250) + 1 }}>
                 <Lottie options={{
                   loop: true,
                   autoplay: true,
@@ -188,7 +188,7 @@ const Home: React.FC = () => {
                   width={300}
                 />
               </div>
-              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 200) + 1 }}>
+              <div style={{ order: Math.floor(Math.random() * 4) + 1, marginTop: Math.floor(Math.random() * 250) + 1 }}>
                 <Lottie options={{
                   loop: true,
                   autoplay: true,

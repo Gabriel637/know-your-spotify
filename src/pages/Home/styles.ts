@@ -42,13 +42,16 @@ export const ButtonBox = styled.div`
 export const ContainerStandBy = styled.div`
     display: flex;
     flex-direction: column;
-    div {
-      margin-top: 0 !important;
-    }  
-  @media(min-width: 1025px){
-    display: flex;
-    justify-content: space-between;
-  }
+    @media(min-width: 1025px){
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    @media(max-width: 1024px){
+      div {
+        margin-top: 0 !important;
+      }  
+    }
 `
 
 export const Button = styled.button`
