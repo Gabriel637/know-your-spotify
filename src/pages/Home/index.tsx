@@ -70,7 +70,7 @@ const Home: React.FC = () => {
       })
       .catch((error: any) => {
         if (error) {
-          window.location.replace('http://localhost:8888/login')
+          window.location.replace('https://know-spotify-api.herokuapp.com/login')
         }
       })
   }
@@ -98,7 +98,7 @@ const Home: React.FC = () => {
       })
       .catch((error: any) => {
         if (error) {
-          window.location.replace('http://localhost:8888/login')
+          window.location.replace('https://know-spotify-api.herokuapp.com/login')
         }
       })
   }
@@ -127,7 +127,7 @@ const Home: React.FC = () => {
       })
       .catch((error: any) => {
         if (error) {
-          window.location.replace('http://localhost:8888/login')
+          window.location.replace('https://know-spotify-api.herokuapp.com/login')
         }
       })
   }
